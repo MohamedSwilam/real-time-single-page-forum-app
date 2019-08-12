@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Model\Likes;
+use App\Model\Question;
+use App\Model\Reply;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +39,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function question()
+    {
+        $this->hasMany(Question::class);
+    }
+
+    public function reply()
+    {
+        $this->hasMany(Reply::class);
+    }
+
+    public function like()
+    {
+        $this->hasMany(Likes::class);
+    }
 }
